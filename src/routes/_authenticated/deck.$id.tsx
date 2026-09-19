@@ -141,7 +141,7 @@ function DeckWorkspace() {
           <Button variant={editing ? "hero" : "outline"} onClick={() => setEditing((e) => !e)}>
             <Pencil /> {editing ? "Editing" : "Edit"}
           </Button>
-          <Button asChild variant="ghost-dark">
+          <Button asChild variant="outline">
             <Link to="/critic/$id" params={{ id: row.id }}>
               <ShieldAlert /> Critique
             </Link>
