@@ -210,13 +210,19 @@ export function ForgotPasswordForm() {
 
   const submit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!EMAIL_RE.test(email)) return toast.error("Enter a valid email address.");
+    if (!EMAIL_RE.test(email)) {
+      toast.error("Enter a valid email address.");
+      return;
+    }
     setLoading(true);
     const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
       redirectTo: `${window.location.origin}/reset-password`,
     });
     setLoading(false);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     setSent(true);
   };
 
@@ -256,12 +262,21 @@ export function ResetPasswordForm() {
 
   const submit = async (e: FormEvent) => {
     e.preventDefault();
-    if (password.length < 8) return toast.error("Password must be at least 8 characters.");
-    if (password !== confirm) return toast.error("Passwords do not match.");
+    if (password.length < 8) {
+      toast.error("Password must be at least 8 characters.");
+      return;
+    }
+    if (password !== confirm) {
+      toast.error("Passwords do not match.");
+      return;
+    }
     setLoading(true);
     const { error } = await supabase.auth.updateUser({ password });
     setLoading(false);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     toast.success("Password updated ✓");
     navigate({ to: "/dashboard" });
   };
