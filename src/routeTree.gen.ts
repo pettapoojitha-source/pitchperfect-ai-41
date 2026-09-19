@@ -19,6 +19,8 @@ import { Route as AuthenticatedCreateRouteImport } from './routes/_authenticated
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedDecksRouteImport } from './routes/_authenticated/decks'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedCriticIndexRouteImport } from './routes/_authenticated/critic.index'
+import { Route as AuthenticatedCriticIdRouteImport } from './routes/_authenticated/critic.$id'
 import { Route as AuthenticatedDeckIdRouteImport } from './routes/_authenticated/deck.$id'
 import { Route as AuthenticatedPresentationIndexRouteImport } from './routes/_authenticated/presentation.index'
 import { Route as AuthenticatedPresentationIdRouteImport } from './routes/_authenticated/presentation.$id'
@@ -72,6 +74,17 @@ const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedCriticIndexRoute =
+  AuthenticatedCriticIndexRouteImport.update({
+    id: '/critic/',
+    path: '/critic/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedCriticIdRoute = AuthenticatedCriticIdRouteImport.update({
+  id: '/critic/$id',
+  path: '/critic/$id',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedDeckIdRoute = AuthenticatedDeckIdRouteImport.update({
   id: '/deck/$id',
   path: '/deck/$id',
@@ -100,8 +113,10 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/decks': typeof AuthenticatedDecksRoute
   '/settings': typeof AuthenticatedSettingsRoute
+  '/critic/$id': typeof AuthenticatedCriticIdRoute
   '/deck/$id': typeof AuthenticatedDeckIdRoute
   '/presentation/$id': typeof AuthenticatedPresentationIdRoute
+  '/critic/': typeof AuthenticatedCriticIndexRoute
   '/presentation/': typeof AuthenticatedPresentationIndexRoute
 }
 export interface FileRoutesByTo {
@@ -114,8 +129,10 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/decks': typeof AuthenticatedDecksRoute
   '/settings': typeof AuthenticatedSettingsRoute
+  '/critic/$id': typeof AuthenticatedCriticIdRoute
   '/deck/$id': typeof AuthenticatedDeckIdRoute
   '/presentation/$id': typeof AuthenticatedPresentationIdRoute
+  '/critic': typeof AuthenticatedCriticIndexRoute
   '/presentation': typeof AuthenticatedPresentationIndexRoute
 }
 export interface FileRoutesById {
@@ -130,8 +147,10 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/decks': typeof AuthenticatedDecksRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/critic/$id': typeof AuthenticatedCriticIdRoute
   '/_authenticated/deck/$id': typeof AuthenticatedDeckIdRoute
   '/_authenticated/presentation/$id': typeof AuthenticatedPresentationIdRoute
+  '/_authenticated/critic/': typeof AuthenticatedCriticIndexRoute
   '/_authenticated/presentation/': typeof AuthenticatedPresentationIndexRoute
 }
 export interface FileRouteTypes {
@@ -146,8 +165,10 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/decks'
     | '/settings'
+    | '/critic/$id'
     | '/deck/$id'
     | '/presentation/$id'
+    | '/critic/'
     | '/presentation/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -160,8 +181,10 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/decks'
     | '/settings'
+    | '/critic/$id'
     | '/deck/$id'
     | '/presentation/$id'
+    | '/critic'
     | '/presentation'
   id:
     | '__root__'
@@ -175,8 +198,10 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/_authenticated/decks'
     | '/_authenticated/settings'
+    | '/_authenticated/critic/$id'
     | '/_authenticated/deck/$id'
     | '/_authenticated/presentation/$id'
+    | '/_authenticated/critic/'
     | '/_authenticated/presentation/'
   fileRoutesById: FileRoutesById
 }
@@ -261,6 +286,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/critic/': {
+      id: '/_authenticated/critic/'
+      path: '/critic'
+      fullPath: '/critic/'
+      preLoaderRoute: typeof AuthenticatedCriticIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/critic/$id': {
+      id: '/_authenticated/critic/$id'
+      path: '/critic/$id'
+      fullPath: '/critic/$id'
+      preLoaderRoute: typeof AuthenticatedCriticIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/deck/$id': {
       id: '/_authenticated/deck/$id'
       path: '/deck/$id'
@@ -290,8 +329,10 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedDecksRoute: typeof AuthenticatedDecksRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedCriticIdRoute: typeof AuthenticatedCriticIdRoute
   AuthenticatedDeckIdRoute: typeof AuthenticatedDeckIdRoute
   AuthenticatedPresentationIdRoute: typeof AuthenticatedPresentationIdRoute
+  AuthenticatedCriticIndexRoute: typeof AuthenticatedCriticIndexRoute
   AuthenticatedPresentationIndexRoute: typeof AuthenticatedPresentationIndexRoute
 }
 
@@ -300,8 +341,10 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedDecksRoute: AuthenticatedDecksRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedCriticIdRoute: AuthenticatedCriticIdRoute,
   AuthenticatedDeckIdRoute: AuthenticatedDeckIdRoute,
   AuthenticatedPresentationIdRoute: AuthenticatedPresentationIdRoute,
+  AuthenticatedCriticIndexRoute: AuthenticatedCriticIndexRoute,
   AuthenticatedPresentationIndexRoute: AuthenticatedPresentationIndexRoute,
 }
 
