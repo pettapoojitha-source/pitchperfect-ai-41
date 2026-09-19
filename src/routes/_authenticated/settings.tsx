@@ -58,16 +58,25 @@ function Settings() {
   const saveName = async () => {
     if (!user) return;
     const { error } = await supabase.from("profiles").update({ full_name: name.trim() }).eq("id", user.id);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     await supabase.auth.updateUser({ data: { full_name: name.trim() } });
     qc.invalidateQueries({ queryKey: ["profile"] });
     toast.success("Changes saved ✓");
   };
 
   const changePassword = async () => {
-    if (pw.length < 8) return toast.error("Password must be at least 8 characters.");
+    if (pw.length < 8) {
+      toast.error("Password must be at least 8 characters.");
+      return;
+    }
     const { error } = await supabase.auth.updateUser({ password: pw, ...(current ? { current_password: current } : {}) } as never);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     setPw("");
     setCurrent("");
     toast.success("Password updated ✓");
