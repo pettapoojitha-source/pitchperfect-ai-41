@@ -10,33 +10,208 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as AuthenticatedCreateRouteImport } from './routes/_authenticated/create'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedDecksRouteImport } from './routes/_authenticated/decks'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedCriticIndexRouteImport } from './routes/_authenticated/critic.index'
+import { Route as AuthenticatedCriticIdRouteImport } from './routes/_authenticated/critic.$id'
+import { Route as AuthenticatedDeckIdRouteImport } from './routes/_authenticated/deck.$id'
+import { Route as AuthenticatedPresentationIndexRouteImport } from './routes/_authenticated/presentation.index'
+import { Route as AuthenticatedPresentationIdRouteImport } from './routes/_authenticated/presentation.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedCreateRoute = AuthenticatedCreateRouteImport.update({
+  id: '/create',
+  path: '/create',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDecksRoute = AuthenticatedDecksRouteImport.update({
+  id: '/decks',
+  path: '/decks',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedCriticIndexRoute =
+  AuthenticatedCriticIndexRouteImport.update({
+    id: '/critic/',
+    path: '/critic/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedCriticIdRoute = AuthenticatedCriticIdRouteImport.update({
+  id: '/critic/$id',
+  path: '/critic/$id',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDeckIdRoute = AuthenticatedDeckIdRouteImport.update({
+  id: '/deck/$id',
+  path: '/deck/$id',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPresentationIndexRoute =
+  AuthenticatedPresentationIndexRouteImport.update({
+    id: '/presentation/',
+    path: '/presentation/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPresentationIdRoute =
+  AuthenticatedPresentationIdRouteImport.update({
+    id: '/presentation/$id',
+    path: '/presentation/$id',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/signup': typeof SignupRoute
+  '/create': typeof AuthenticatedCreateRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/decks': typeof AuthenticatedDecksRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/critic/$id': typeof AuthenticatedCriticIdRoute
+  '/deck/$id': typeof AuthenticatedDeckIdRoute
+  '/presentation/$id': typeof AuthenticatedPresentationIdRoute
+  '/critic/': typeof AuthenticatedCriticIndexRoute
+  '/presentation/': typeof AuthenticatedPresentationIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/signup': typeof SignupRoute
+  '/create': typeof AuthenticatedCreateRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/decks': typeof AuthenticatedDecksRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/critic/$id': typeof AuthenticatedCriticIdRoute
+  '/deck/$id': typeof AuthenticatedDeckIdRoute
+  '/presentation/$id': typeof AuthenticatedPresentationIdRoute
+  '/critic': typeof AuthenticatedCriticIndexRoute
+  '/presentation': typeof AuthenticatedPresentationIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/signup': typeof SignupRoute
+  '/_authenticated/create': typeof AuthenticatedCreateRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/decks': typeof AuthenticatedDecksRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/critic/$id': typeof AuthenticatedCriticIdRoute
+  '/_authenticated/deck/$id': typeof AuthenticatedDeckIdRoute
+  '/_authenticated/presentation/$id': typeof AuthenticatedPresentationIdRoute
+  '/_authenticated/critic/': typeof AuthenticatedCriticIndexRoute
+  '/_authenticated/presentation/': typeof AuthenticatedPresentationIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/forgot-password'
+    | '/login'
+    | '/reset-password'
+    | '/signup'
+    | '/create'
+    | '/dashboard'
+    | '/decks'
+    | '/settings'
+    | '/critic/$id'
+    | '/deck/$id'
+    | '/presentation/$id'
+    | '/critic/'
+    | '/presentation/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/forgot-password'
+    | '/login'
+    | '/reset-password'
+    | '/signup'
+    | '/create'
+    | '/dashboard'
+    | '/decks'
+    | '/settings'
+    | '/critic/$id'
+    | '/deck/$id'
+    | '/presentation/$id'
+    | '/critic'
+    | '/presentation'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/forgot-password'
+    | '/login'
+    | '/reset-password'
+    | '/signup'
+    | '/_authenticated/create'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/decks'
+    | '/_authenticated/settings'
+    | '/_authenticated/critic/$id'
+    | '/_authenticated/deck/$id'
+    | '/_authenticated/presentation/$id'
+    | '/_authenticated/critic/'
+    | '/_authenticated/presentation/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  LoginRoute: typeof LoginRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
+  SignupRoute: typeof SignupRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +223,141 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/create': {
+      id: '/_authenticated/create'
+      path: '/create'
+      fullPath: '/create'
+      preLoaderRoute: typeof AuthenticatedCreateRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/decks': {
+      id: '/_authenticated/decks'
+      path: '/decks'
+      fullPath: '/decks'
+      preLoaderRoute: typeof AuthenticatedDecksRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/critic/': {
+      id: '/_authenticated/critic/'
+      path: '/critic'
+      fullPath: '/critic/'
+      preLoaderRoute: typeof AuthenticatedCriticIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/critic/$id': {
+      id: '/_authenticated/critic/$id'
+      path: '/critic/$id'
+      fullPath: '/critic/$id'
+      preLoaderRoute: typeof AuthenticatedCriticIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/deck/$id': {
+      id: '/_authenticated/deck/$id'
+      path: '/deck/$id'
+      fullPath: '/deck/$id'
+      preLoaderRoute: typeof AuthenticatedDeckIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/presentation/': {
+      id: '/_authenticated/presentation/'
+      path: '/presentation'
+      fullPath: '/presentation/'
+      preLoaderRoute: typeof AuthenticatedPresentationIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/presentation/$id': {
+      id: '/_authenticated/presentation/$id'
+      path: '/presentation/$id'
+      fullPath: '/presentation/$id'
+      preLoaderRoute: typeof AuthenticatedPresentationIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedCreateRoute: typeof AuthenticatedCreateRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedDecksRoute: typeof AuthenticatedDecksRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedCriticIdRoute: typeof AuthenticatedCriticIdRoute
+  AuthenticatedDeckIdRoute: typeof AuthenticatedDeckIdRoute
+  AuthenticatedPresentationIdRoute: typeof AuthenticatedPresentationIdRoute
+  AuthenticatedCriticIndexRoute: typeof AuthenticatedCriticIndexRoute
+  AuthenticatedPresentationIndexRoute: typeof AuthenticatedPresentationIndexRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedCreateRoute: AuthenticatedCreateRoute,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedDecksRoute: AuthenticatedDecksRoute,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedCriticIdRoute: AuthenticatedCriticIdRoute,
+  AuthenticatedDeckIdRoute: AuthenticatedDeckIdRoute,
+  AuthenticatedPresentationIdRoute: AuthenticatedPresentationIdRoute,
+  AuthenticatedCriticIndexRoute: AuthenticatedCriticIndexRoute,
+  AuthenticatedPresentationIndexRoute: AuthenticatedPresentationIndexRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  LoginRoute: LoginRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
+  SignupRoute: SignupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
