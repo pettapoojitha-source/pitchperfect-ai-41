@@ -103,7 +103,7 @@ function DeckWorkspace() {
       const nextDeck: Deck = { ...deck, slides: deck.slides.map((s) => (s.number === next.number ? next : s)) };
       await updateDeckData(row.id, nextDeck);
       if (user) recordSlideEdit({ deckId: row.id, userId: user.id, slideNumber: next.number, content: next });
-      qc.setQueryData(deckQuery(id).queryKey, { ...row, deck_data: nextDeck, updated_at: new Date().toISOString() });
+      qc.setQueryData(deckQuery(id).queryKey, () => ({ ...row, deck_data: nextDeck, updated_at: new Date().toISOString() }));
       qc.invalidateQueries({ queryKey: ["decks"] });
       setSavedAt(Date.now());
       if (!opts?.silent) toast.success("Changes saved ✓");

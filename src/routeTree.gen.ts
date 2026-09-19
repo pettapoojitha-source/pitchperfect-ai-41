@@ -19,6 +19,9 @@ import { Route as AuthenticatedCreateRouteImport } from './routes/_authenticated
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedDecksRouteImport } from './routes/_authenticated/decks'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedDeckIdRouteImport } from './routes/_authenticated/deck.$id'
+import { Route as AuthenticatedPresentationIndexRouteImport } from './routes/_authenticated/presentation.index'
+import { Route as AuthenticatedPresentationIdRouteImport } from './routes/_authenticated/presentation.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -69,6 +72,23 @@ const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedDeckIdRoute = AuthenticatedDeckIdRouteImport.update({
+  id: '/deck/$id',
+  path: '/deck/$id',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPresentationIndexRoute =
+  AuthenticatedPresentationIndexRouteImport.update({
+    id: '/presentation/',
+    path: '/presentation/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPresentationIdRoute =
+  AuthenticatedPresentationIdRouteImport.update({
+    id: '/presentation/$id',
+    path: '/presentation/$id',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -80,6 +100,9 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/decks': typeof AuthenticatedDecksRoute
   '/settings': typeof AuthenticatedSettingsRoute
+  '/deck/$id': typeof AuthenticatedDeckIdRoute
+  '/presentation/$id': typeof AuthenticatedPresentationIdRoute
+  '/presentation/': typeof AuthenticatedPresentationIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -91,6 +114,9 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/decks': typeof AuthenticatedDecksRoute
   '/settings': typeof AuthenticatedSettingsRoute
+  '/deck/$id': typeof AuthenticatedDeckIdRoute
+  '/presentation/$id': typeof AuthenticatedPresentationIdRoute
+  '/presentation': typeof AuthenticatedPresentationIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -104,6 +130,9 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/decks': typeof AuthenticatedDecksRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/deck/$id': typeof AuthenticatedDeckIdRoute
+  '/_authenticated/presentation/$id': typeof AuthenticatedPresentationIdRoute
+  '/_authenticated/presentation/': typeof AuthenticatedPresentationIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -117,6 +146,9 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/decks'
     | '/settings'
+    | '/deck/$id'
+    | '/presentation/$id'
+    | '/presentation/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -128,6 +160,9 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/decks'
     | '/settings'
+    | '/deck/$id'
+    | '/presentation/$id'
+    | '/presentation'
   id:
     | '__root__'
     | '/'
@@ -140,6 +175,9 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/_authenticated/decks'
     | '/_authenticated/settings'
+    | '/_authenticated/deck/$id'
+    | '/_authenticated/presentation/$id'
+    | '/_authenticated/presentation/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -223,6 +261,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/deck/$id': {
+      id: '/_authenticated/deck/$id'
+      path: '/deck/$id'
+      fullPath: '/deck/$id'
+      preLoaderRoute: typeof AuthenticatedDeckIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/presentation/': {
+      id: '/_authenticated/presentation/'
+      path: '/presentation'
+      fullPath: '/presentation/'
+      preLoaderRoute: typeof AuthenticatedPresentationIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/presentation/$id': {
+      id: '/_authenticated/presentation/$id'
+      path: '/presentation/$id'
+      fullPath: '/presentation/$id'
+      preLoaderRoute: typeof AuthenticatedPresentationIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
@@ -231,6 +290,9 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedDecksRoute: typeof AuthenticatedDecksRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedDeckIdRoute: typeof AuthenticatedDeckIdRoute
+  AuthenticatedPresentationIdRoute: typeof AuthenticatedPresentationIdRoute
+  AuthenticatedPresentationIndexRoute: typeof AuthenticatedPresentationIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -238,6 +300,9 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedDecksRoute: AuthenticatedDecksRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedDeckIdRoute: AuthenticatedDeckIdRoute,
+  AuthenticatedPresentationIdRoute: AuthenticatedPresentationIdRoute,
+  AuthenticatedPresentationIndexRoute: AuthenticatedPresentationIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
